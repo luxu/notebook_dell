@@ -34,7 +34,6 @@ def update_notebooks(request):
 
 
 def crawling(browser):
-    print(browser.current_url)
     if 'https://deals.dell.com/pt-br/work/category/notebooks?appliedRefinements=201' in browser.current_url:
         for box in browser.find_elements_by_class_name('sd-ps-stack'):
             try:
