@@ -1,12 +1,13 @@
 # coding: utf-8
-import os
+from pathlib import Path
 from decouple import Csv, config
 from dj_database_url import parse as dburl
-from pathlib import Path
+import os
 
 
-BASE_DIR = Path(__file__).parent
+# BASE_DIR = Path(__file__).parent
 ROOT_DIR = Path(__file__).parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = config("DEBUG", cast=bool)
 
@@ -22,14 +23,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
-    "corsheaders",
     "notebook",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -86,12 +85,12 @@ TIME_ZONE = "America/Sao_Paulo"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-LOCALE_PATHS = [BASE_DIR, "locale"]
+# LOCALE_PATHS = [BASE_DIR, "locale"]
 
 # STATIC
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(ROOT_DIR, "staticfiles")
+# STATICFILES_DIRS = [BASE_DIR / "static", '/var/www/static/' ,]
 
 MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
